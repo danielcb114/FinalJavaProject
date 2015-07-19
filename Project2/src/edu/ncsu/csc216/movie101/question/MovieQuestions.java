@@ -122,7 +122,7 @@ public class MovieQuestions {
       private int numCorrectInRow;
       
       public AdvanceQuestionState(List<AdvancedQuestion> advList) {
-         super(List < Question > advList);
+         super(advList);
          // TODO Auto-generated constructor stub
       }
       
