@@ -138,10 +138,6 @@ public class Movie101GUI extends JFrame implements ActionListener {
       
    }
    
-   private void questionBox() {
-      
-   }
-   
    private void quitMessage() {
       
    }
