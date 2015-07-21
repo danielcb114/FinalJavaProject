@@ -255,7 +255,7 @@ public class MovieQuestions {
       @Override
       public String processAnswer(String answer) throws EmptyQuestionListException {
          if (answer.equalsIgnoreCase(getCurrentQuestionAnswer())) {
-            if (numCorrectInRow >= 2) {
+            if (numCorrectInRow >= 1) {
                state = advState;
             } else {
                nextQuestion();
