@@ -6,7 +6,6 @@ import java.util.List;
 
 import edu.ncsu.csc216.movie101.util.EmptyQuestionListException;
 import edu.ncsu.csc216.question_library.Question;
-import edu.ncsu.csc216.question_library.QuestionReader;
 
 /**
  * QuestionState is an abstract class that represents state in the FSM. 
