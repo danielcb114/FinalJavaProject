@@ -1,6 +1,5 @@
 package edu.ncsu.csc216.movie101.question;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -23,6 +22,8 @@ public abstract class QuestionState {
    private Question currentQuestion;
    /** The front indicator of the list */
    public static final int FRONT = 0;
+   /** The number of options each question has */
+   private static final int NUM_CHOICES = 4;
    
    /**
     * The QuestionState constructor initializes List<Question> questions
@@ -81,13 +82,13 @@ public abstract class QuestionState {
     */
    public String[] getCurrentQuestionChoices() throws EmptyQuestionListException {
       if (currentQuestion != null) {
-         List<String> choiceList = new ArrayList<String>();
-         choiceList.add(currentQuestion.getChoiceA());
-         choiceList.add(currentQuestion.getChoiceB());
-         choiceList.add(currentQuestion.getChoiceC());
-         choiceList.add(currentQuestion.getChoiceD());
-         String[] choices = new String[choiceList.size()];
-         choiceList.toArray(choices);
+         String[] choices = new String[NUM_CHOICES];
+         
+         choices[0] = currentQuestion.getChoiceA();
+         choices[1] = currentQuestion.getChoiceB();
+         choices[2] = currentQuestion.getChoiceC();
+         choices[3] = currentQuestion.getChoiceC();
+         
          return choices;
       } else {
          throw new EmptyQuestionListException();
