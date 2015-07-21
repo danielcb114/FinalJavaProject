@@ -211,6 +211,7 @@ public class MovieQuestions {
          } else {
             attempts++;
             if (attempts >= 2) {
+               attempts = 0;
                nextQuestion();
                return INCORRECT;
             } else {
