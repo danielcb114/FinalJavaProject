@@ -10,13 +10,27 @@ public class CreateTestFile {
       } catch (QuestionException e) {
          e.printStackTrace();
       }
-      r.makeElementaryQuestion("Who directed the Transformers Movies?", "Michael Bay",
-                               "M Night Shamalan", "Quentin Tarantino", "Anon", "A",
+      r.makeElementaryQuestion("Easy Question (pick A)", "1",
+                               "2", "3", "4", "a",
                                "The first one");
-      r.makeStandardQuestion("Who is directing the new Star Wars", "Michael Bay", "Clint Eastwood",
-                             "JJ Abrams", "Quentin Tarantino", "C");
-      r.makeAdvancedQuestion("Who directed the Shining?", "Stanley Kubrick", "Steven Spielberg",
-                             "Michael Bay", "Clint Eastwood", "B", "Good job!");
+      r.makeElementaryQuestion("Easy Question (pick B)", "1",
+                               "2", "3", "4", "b",
+                               "The first one");
+      r.makeElementaryQuestion("Easy Question (pick C)", "1",
+                               "2", "3", "4", "c",
+                               "The first one");
+      r.makeStandardQuestion("Standard Question (pick A)", "1", "2",
+                             "3", "4", "a");
+      r.makeStandardQuestion("Standard Question (pick B)", "1", "2",
+                             "3", "4", "b");
+      r.makeStandardQuestion("Standard Question (pick C)", "1", "2",
+                             "3", "4", "c");
+      r.makeAdvancedQuestion("Hard Question (Pick A)", "1", "2",
+                             "3", "4", "a", "Good job in choosing A!");
+      r.makeAdvancedQuestion("Hard Question (Pick B)", "1", "2",
+                             "3", "4", "b", "Good job in choosing B!");
+      r.makeAdvancedQuestion("Hard Question (Pick C)", "1", "2",
+                             "3", "4", "c", "Good job in choosing C!");
       
       try {
          r.marshal();
