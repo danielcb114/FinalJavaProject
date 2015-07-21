@@ -18,7 +18,7 @@ import edu.ncsu.csc216.question_library.StandardQuestion;
  */
 public class MovieQuestions {
    /** Tracker for the number of user correct answers */
-   private int numCorretAnswers;
+   private int numCorrectAnswers;
    /** Tracker for the number of user attempts */
    private int numAttemptQuests;
    /** Tracker for the question state of elementary questions */
@@ -118,7 +118,7 @@ public class MovieQuestions {
     * @return the number of user correct answers
     */
    public int getNumCorretAnswers() {
-      return numCorretAnswers;
+      return numCorrectAnswers;
    }
    
    /**
@@ -157,11 +157,15 @@ public class MovieQuestions {
       @Override
       public String processAnswer(String answer) throws EmptyQuestionListException {
          if (answer.equalsIgnoreCase(getCurrentQuestionAnswer())) {
+        	numAttemptQuests++;
+         	numCorrectAnswers++;
             nextQuestion();
             return CORRECT + SEPARATOR + "Good Job!";
          } else {
-            state = stdState;
-            return INCORRECT;
+        	 numAttemptQuests++;
+        	 nextQuestion();
+        	 state = stdState;
+        	 return INCORRECT;
          }
       }
       
@@ -201,9 +205,12 @@ public class MovieQuestions {
       @Override
       public String processAnswer(String answer) throws EmptyQuestionListException {
          if (answer.equalsIgnoreCase(getCurrentQuestionAnswer())) {
+        	 numAttemptQuests++;
+         	 numCorrectAnswers++;
         	 attempts++;
         	 if (numCorrectInRow == 1 && attempts == 1) {
             	numCorrectInRow = 0;
+            	nextQuestion();
             	state = stdState;
             } else if (attempts == 1) {
             	attempts = 0;
@@ -215,6 +222,7 @@ public class MovieQuestions {
             }
             return CORRECT;
          } else {
+        	numAttemptQuests++;
             attempts++;
             numCorrectInRow = 0;
             if (attempts >= 2) {
@@ -262,14 +270,19 @@ public class MovieQuestions {
       @Override
       public String processAnswer(String answer) throws EmptyQuestionListException {
          if (answer.equalsIgnoreCase(getCurrentQuestionAnswer())) {
+        	numAttemptQuests++;
+         	numCorrectAnswers++;
             if (numCorrectInRow >= 1) {
-               state = advState;
+            	nextQuestion();
+            	state = advState;
             } else {
                nextQuestion();
                numCorrectInRow++;
             }
             return CORRECT;
          } else {
+        	 numAttemptQuests++;
+        	 nextQuestion();
         	 numCorrectInRow = 0;
         	 state = elemState;
         	 return INCORRECT;

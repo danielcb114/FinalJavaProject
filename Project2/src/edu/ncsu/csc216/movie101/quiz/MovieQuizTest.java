@@ -111,10 +111,10 @@ public class MovieQuizTest {
       assertEquals("Correct!",quiz2.processAnswer("b"));
       // Answer hard question correctly, expected Congratulations, expected HardQuestionA
       assertEquals("Hard Question (Pick A)",quiz2.getCurrentQuestionText());
-      assertEquals("Correct! Good job in choosing A!",quiz2.processAnswer("a"));
+      assertEquals("Correct! Good Job!",quiz2.processAnswer("a"));
       // Answer hard question correctly, expected Congratulations, expected HardQuestionB
       assertEquals("Hard Question (Pick B)",quiz2.getCurrentQuestionText());
-      assertEquals("Correct! Good job in choosing B!",quiz2.processAnswer("b"));
+      assertEquals("Correct! Good Job!",quiz2.processAnswer("b"));
       // Answer hard question incorrectly, expected Incorrect!, expected HardQuestionC
       assertEquals("Hard Question (Pick C)",quiz2.getCurrentQuestionText());
       assertEquals("Incorrect!",quiz2.processAnswer("d"));
@@ -141,7 +141,7 @@ public class MovieQuizTest {
       quiz.processAnswer("a");// right
       quiz.processAnswer("b");// right
       
-      assertEquals(quiz.getNumAttemptedQuestions(), 3);
+      assertEquals(4, quiz.getNumAttemptedQuestions());
    }
    
 }

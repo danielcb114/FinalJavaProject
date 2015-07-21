@@ -31,8 +31,8 @@ public abstract class QuestionState {
     */
    public QuestionState(List<Question> list) {
       questions = list;
-      it = questions.iterator();
-      currentQuestion = it.next();
+      
+      currentQuestion = questions.get(FRONT);
    }
    
    /**
@@ -130,8 +130,10 @@ public abstract class QuestionState {
     * questions in the list.
     */
    public void nextQuestion() {
-      if (it.hasNext()) {
-         currentQuestion = it.next();
+	   it = questions.iterator();
+	   questions.remove(FRONT);
+	   if (it.hasNext()) {
+		   currentQuestion = questions.get(FRONT);
       } else {
          currentQuestion = null;
       }
