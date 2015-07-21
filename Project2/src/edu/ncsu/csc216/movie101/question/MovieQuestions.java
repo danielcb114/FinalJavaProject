@@ -41,6 +41,8 @@ public class MovieQuestions {
    public static final String INCORRECT = "Incorrect!";
    /** String to separate the text */
    public static final String SEPARATOR = " ";
+   /** String to indicate hint */
+   public static final String HINT = "Hint: ";
    
    /**
     * A constructor that takes three Lists to initialize its nested concrete state classes.
@@ -200,7 +202,7 @@ public class MovieQuestions {
       public String processAnswer(String answer) throws EmptyQuestionListException {
          if (answer.equalsIgnoreCase(getCurrentQuestionAnswer())) { // if answer is correct
             // progress state onto standard
-            if (attempts == 1 && numCorrectInRow == 1) {
+            if (numCorrectInRow == 1) {
                state = stdState;
             } else {
                // it's right, but not right enough
@@ -216,7 +218,7 @@ public class MovieQuestions {
                return INCORRECT;
             } else {
                ElementaryQuestion elem = (ElementaryQuestion) getCurrentQuestion();
-               return INCORRECT + SEPARATOR + elem.getHint();
+               return INCORRECT + SEPARATOR + HINT + elem.getHint();
             }
             
          }
