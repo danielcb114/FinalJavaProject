@@ -35,6 +35,8 @@ public class MovieQuizTest {
       int expectedQuestions = 3;
       int numEasyQuestions = 3;
       
+      System.out.printf("\nBeginning of testHasMoreQuestions console:\n");
+      
       MovieQuiz quiz = new MovieQuiz(testFile);
       
       assertTrue(quiz.hasMoreQuestions());
@@ -65,22 +67,81 @@ public class MovieQuizTest {
    
    @Test
    public void testGetCurrentQuestionChoices() throws Exception {
-      throw new RuntimeException("not yet implemented");
+      MovieQuiz quiz = new MovieQuiz(testFile);
+      
+      String[] choices = quiz.getCurrentQuestionChoices();
+      
+      for (int i = 0; i < 4; i++) {
+         assertEquals(choices[i], Integer.toString(i + 1));
+      }
    }
    
    @Test
    public void testProcessAnswer() throws Exception {
-      throw new RuntimeException("not yet implemented");
+      MovieQuiz quiz = new MovieQuiz(testFile);
+      
+      // answer standard question incorrectly, expected Incorrect!, expected StandardQuestionA
+      assertEquals(quiz.getCurrentQuestionText(), "Standard Question (pick A)");
+      assertEquals(quiz.processAnswer("b"), "Incorrect!");
+      // answer easy question incorrectly, expected Incorrect! and hint, expected EasyQuestionA
+      assertEquals(quiz.getCurrentQuestionText(), "Easy Question (pick A)");
+      // System.out.println(quiz.processAnswer("c"));
+      assertEquals(quiz.processAnswer("c"), "Incorrect! Hint: The first one");
+      // answer easy question incorrectly again, expected Incorrect!, expected EasyQuestionA
+      assertEquals(quiz.getCurrentQuestionText(), "Easy Question (pick A)");
+      assertEquals(quiz.processAnswer("d"), "Incorrect!");
+      // answer easy question correctly, expected Correct!, expected EasyQuestionB
+      assertEquals(quiz.getCurrentQuestionText(), "Easy Question (pick B)");
+      assertEquals(quiz.processAnswer("b"), "Correct!");
+      // answer easy question correctly, expected Correct!, expected EasyQuestionC
+      assertEquals(quiz.getCurrentQuestionText(), "Easy Question (pick C)");
+      assertEquals(quiz.processAnswer("c"), "Correct!");
+      // answer standard question correctly, expected Correct!, expected StandardQuestionB
+      // FAIL:StandardQuestionA has already been asked earlier, shouldn't be asked again
+      assertEquals(quiz.getCurrentQuestionText(), "Standard Question (pick B)");
+      assertEquals(quiz.processAnswer("b"), "Correct!");
+      
+      MovieQuiz quiz2 = new MovieQuiz(testFile); // test again
+      
+      // Answer standard question correctly, expected Correct!, expected StandarQuestionA
+      assertEquals(quiz2.getCurrentQuestionText(), "Standard Question (pick A)");
+      assertEquals(quiz2.processAnswer("a"), "Correct!");
+      // Answer standard question correctly, expected Correct!, expected StandardQuestionB
+      assertEquals(quiz2.getCurrentQuestionText(), "Standard Question (pick B)");
+      assertEquals(quiz2.processAnswer("b"), "Correct!");
+      // Answer hard question correctly, expected Congratulations, expected HardQuestionA
+      assertEquals(quiz2.getCurrentQuestionText(), "Hard Question (Pick A)");
+      assertEquals(quiz2.processAnswer("a"), "Correct! Good job in choosing A!");
+      // Answer hard question correctly, expected Congratulations, expected HardQuestionB
+      assertEquals(quiz2.getCurrentQuestionText(), "Hard Question (Pick B)");
+      assertEquals(quiz2.processAnswer("b"), "Correct! Good job in choosing B!");
+      // Answer hard question incorrectly, expected Incorrect!, expected HardQuestionC
+      assertEquals(quiz2.getCurrentQuestionText(), "Hard Question (Pick C)");
+      assertEquals(quiz2.processAnswer("d"), "Incorrect!");
    }
    
    @Test
    public void testGetNumCorrectQuestions() throws Exception {
-      throw new RuntimeException("not yet implemented");
+      MovieQuiz quiz = new MovieQuiz(testFile);
+      
+      quiz.processAnswer("a");// right
+      quiz.processAnswer("d");// wrong
+      quiz.processAnswer("a");// right
+      quiz.processAnswer("b");// right
+      
+      assertEquals(quiz.getNumCorrectQuestions(), 3);
    }
    
    @Test
    public void testGetNumAttemptedQuestions() throws Exception {
-      throw new RuntimeException("not yet implemented");
+      MovieQuiz quiz = new MovieQuiz(testFile);
+      
+      quiz.processAnswer("a");// right
+      quiz.processAnswer("d");// wrong
+      quiz.processAnswer("a");// right
+      quiz.processAnswer("b");// right
+      
+      assertEquals(quiz.getNumAttemptedQuestions(), 3);
    }
    
 }
