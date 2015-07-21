@@ -1,20 +1,8 @@
 package edu.ncsu.csc216.movie101.question;
 
-import org.junit.Before;
 import org.junit.Test;
 
-import edu.ncsu.csc216.question_library.ElementaryQuestion;
-
 public class MovieQuestionsTest {
-   
-   @Before
-   public static void setUp() {
-      // construct easy question list
-      ElementaryQuestion q = new ElementaryQuestion();
-      // construct standard question list
-      
-      // construct advanced question list
-   }
    
    @Test
    public void testMovieQuestions() throws Exception {

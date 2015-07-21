@@ -1,5 +1,6 @@
 package edu.ncsu.csc216.movie101.quiz;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -32,14 +33,22 @@ public class MovieQuizTest {
    @Test
    public void testHasMoreQuestions() throws Exception {
       int expectedQuestions = 3;
+      int numEasyQuestions = 3;
       
       MovieQuiz quiz = new MovieQuiz(testFile);
       
       assertTrue(quiz.hasMoreQuestions());
       
-      for (int i = 0; i < expectedQuestions; i++) {
-         assertTrue(quiz.hasMoreQuestions());
-         quiz.processAnswer("1");
+      // answer one standard question incorrectly
+      System.out.println(quiz.getCurrentQuestionText());
+      quiz.processAnswer("d");
+      
+      // answer each easy question incorrectly twice
+      for (int i = 0; i < numEasyQuestions; i++) {
+         System.out.println(quiz.getCurrentQuestionText());
+         quiz.processAnswer("d");
+         System.out.println(quiz.getCurrentQuestionText());
+         quiz.processAnswer("d");
       }
       
       assertFalse(quiz.hasMoreQuestions());
@@ -49,7 +58,9 @@ public class MovieQuizTest {
    public void testGetCurrentQuestionText() throws Exception {
       MovieQuiz quiz = new MovieQuiz(testFile);
       
-      assertTrue(quiz.getCurrentQuestionText().equals("1 (easy)"));
+      assertEquals(quiz.getCurrentQuestionText(), "Standard Question (pick A)"); // expected first
+                                                                                 // standard
+                                                                                 // question
    }
    
    @Test
