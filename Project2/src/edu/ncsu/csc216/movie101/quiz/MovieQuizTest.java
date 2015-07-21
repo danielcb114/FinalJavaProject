@@ -81,21 +81,21 @@ public class MovieQuizTest {
       MovieQuiz quiz = new MovieQuiz(testFile);
       
       // answer standard question incorrectly, expected Incorrect!, expected StandardQuestionA
-      assertEquals(quiz.getCurrentQuestionText(), "Standard Question (pick A)");
+      assertEquals("Standard Question (pick A)",quiz.getCurrentQuestionText());
       assertEquals(quiz.processAnswer("b"), "Incorrect!");
       // answer easy question incorrectly, expected Incorrect! and hint, expected EasyQuestionA
-      assertEquals(quiz.getCurrentQuestionText(), "Easy Question (pick A)");
+      assertEquals("Easy Question (pick A)",quiz.getCurrentQuestionText());
       // System.out.println(quiz.processAnswer("c"));
-      assertEquals(quiz.processAnswer("c"), "Incorrect! Hint: The first one");
+      assertEquals("Incorrect! Hint: The first one",quiz.processAnswer("c"));
       // answer easy question incorrectly again, expected Incorrect!, expected EasyQuestionA
-      assertEquals(quiz.getCurrentQuestionText(), "Easy Question (pick A)");
-      assertEquals(quiz.processAnswer("d"), "Incorrect!");
+      assertEquals("Easy Question (pick A)",quiz.getCurrentQuestionText());
+      assertEquals( "Incorrect!",quiz.processAnswer("d"));
       // answer easy question correctly, expected Correct!, expected EasyQuestionB
       assertEquals(quiz.getCurrentQuestionText(), "Easy Question (pick B)");
-      assertEquals(quiz.processAnswer("b"), "Correct!");
+      assertEquals( "Correct!",quiz.processAnswer("b"));
       // answer easy question correctly, expected Correct!, expected EasyQuestionC
       assertEquals(quiz.getCurrentQuestionText(), "Easy Question (pick C)");
-      assertEquals(quiz.processAnswer("c"), "Correct!");
+      assertEquals("Correct!",quiz.processAnswer("c"));
       // answer standard question correctly, expected Correct!, expected StandardQuestionB
       // FAIL:StandardQuestionA has already been asked earlier, shouldn't be asked again
       assertEquals(quiz.getCurrentQuestionText(), "Standard Question (pick B)");
@@ -104,20 +104,20 @@ public class MovieQuizTest {
       MovieQuiz quiz2 = new MovieQuiz(testFile); // test again
       
       // Answer standard question correctly, expected Correct!, expected StandarQuestionA
-      assertEquals(quiz2.getCurrentQuestionText(), "Standard Question (pick A)");
+      assertEquals("Standard Question (pick A)",quiz2.getCurrentQuestionText());
       assertEquals(quiz2.processAnswer("a"), "Correct!");
       // Answer standard question correctly, expected Correct!, expected StandardQuestionB
-      assertEquals(quiz2.getCurrentQuestionText(), "Standard Question (pick B)");
-      assertEquals(quiz2.processAnswer("b"), "Correct!");
+      assertEquals( "Standard Question (pick B)",quiz2.getCurrentQuestionText());
+      assertEquals("Correct!",quiz2.processAnswer("b"));
       // Answer hard question correctly, expected Congratulations, expected HardQuestionA
-      assertEquals(quiz2.getCurrentQuestionText(), "Hard Question (Pick A)");
-      assertEquals(quiz2.processAnswer("a"), "Correct! Good job in choosing A!");
+      assertEquals("Hard Question (Pick A)",quiz2.getCurrentQuestionText());
+      assertEquals("Correct! Good job in choosing A!",quiz2.processAnswer("a"));
       // Answer hard question correctly, expected Congratulations, expected HardQuestionB
-      assertEquals(quiz2.getCurrentQuestionText(), "Hard Question (Pick B)");
-      assertEquals(quiz2.processAnswer("b"), "Correct! Good job in choosing B!");
+      assertEquals("Hard Question (Pick B)",quiz2.getCurrentQuestionText());
+      assertEquals("Correct! Good job in choosing B!",quiz2.processAnswer("b"));
       // Answer hard question incorrectly, expected Incorrect!, expected HardQuestionC
-      assertEquals(quiz2.getCurrentQuestionText(), "Hard Question (Pick C)");
-      assertEquals(quiz2.processAnswer("d"), "Incorrect!");
+      assertEquals("Hard Question (Pick C)",quiz2.getCurrentQuestionText());
+      assertEquals("Incorrect!",quiz2.processAnswer("d"));
    }
    
    @Test
