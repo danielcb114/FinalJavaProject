@@ -32,7 +32,7 @@ public abstract class QuestionState {
    public QuestionState(List<Question> list) {
       questions = list;
       it = questions.iterator();
-      currentQuestion = questions.get(FRONT);
+      currentQuestion = it.next();
    }
    
    /**
