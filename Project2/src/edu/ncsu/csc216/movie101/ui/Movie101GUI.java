@@ -11,6 +11,7 @@ import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -28,12 +29,12 @@ public class Movie101GUI extends JFrame implements ActionListener {
    // Quiz object
    private MovieQuiz quiz;
    
+   // whether or not the user gets a second try
+   boolean secondTry;
+   
    // window parameters
    private static final int WIDTH = 600; // 500
    private static final int HEIGHT = 250; // 250
-   
-   // File
-   private static final String file = "test.xml";
    
    // inputs
    private String[] choices;
@@ -46,6 +47,8 @@ public class Movie101GUI extends JFrame implements ActionListener {
    // answer group
    private static final String EMPTY_RESPONSE = ""; // used for testing
    JLabel responseLabel;
+   
+   ButtonGroup answerButtonGroup;
    
    private static final String SUBMIT_ANSWER_TEXT = "Submit Answer";
    // Question controls group
@@ -67,7 +70,21 @@ public class Movie101GUI extends JFrame implements ActionListener {
    public static void main(String[] args) {
       // select file
       
-      Movie101GUI gui = new Movie101GUI(file);
+      String fileName = "";
+      
+      if (args.length == 1) {
+         fileName = args[0];
+      } else {
+         // inspired by Project1's WolfWareGUI filechooser
+         JFileChooser fc = new JFileChooser();
+         fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+         int returnVal = fc.showOpenDialog(null);
+         if (returnVal == JFileChooser.APPROVE_OPTION) {
+            fileName = fc.getSelectedFile().getName();
+         }
+      }
+      
+      Movie101GUI gui = new Movie101GUI(fileName);
    }
    
    public Movie101GUI(String file) {
@@ -94,7 +111,7 @@ public class Movie101GUI extends JFrame implements ActionListener {
          responseLabel.setFont(FONT);
          
          JPanel answerGroup = new JPanel();
-         ButtonGroup answerButtonGroup = new ButtonGroup(); // create parallel button group
+         answerButtonGroup = new ButtonGroup(); // create parallel button group
          answerGroup.setLayout(new BoxLayout(answerGroup, BoxLayout.Y_AXIS));
          // add to answerGroup
          for (JRadioButton jRadioButton : answerButtons) {
@@ -142,7 +159,6 @@ public class Movie101GUI extends JFrame implements ActionListener {
          masterPane.add(controlGroup);
          
          // adjust layout
-         
          GroupLayout layout = new GroupLayout(masterPane);
          
          layout.setAutoCreateGaps(true);
@@ -174,7 +190,8 @@ public class Movie101GUI extends JFrame implements ActionListener {
       frame.setVisible(false);
       JOptionPane.showMessageDialog(null,
                                     String.format("You answer %d questions correctly out of %d attempts",
-                                                  0, 0));
+                                                  quiz.getNumCorrectQuestions(),
+                                                  quiz.getNumAttemptedQuestions()));
    }
    
    @Override
@@ -190,6 +207,15 @@ public class Movie101GUI extends JFrame implements ActionListener {
                break;
             case NEXT_QUESTION_TEXT:
                // next button
+               
+               // enable and deselect all radio buttons
+               for (JRadioButton jRadioButton : answerButtons) {
+                  jRadioButton.setEnabled(true);
+                  System.out.println(jRadioButton.isSelected());
+               }
+               
+               answerButtonGroup.clearSelection();
+               
                refresh();
                break;
             case QUIT_TEXT:
@@ -200,10 +226,6 @@ public class Movie101GUI extends JFrame implements ActionListener {
             
             case SUBMIT_ANSWER_TEXT:
                // submit answer
-               submitAnswer.setEnabled(false);
-               System.out.println("Submit");
-               System.out.println(quiz.getCurrentQuestionText());
-               nextQuestion.setEnabled(true);
                
                // determine radio button
                int index = -1;
@@ -213,7 +235,7 @@ public class Movie101GUI extends JFrame implements ActionListener {
                      break;
                   }
                }
-               
+               String preSubmission = quiz.getCurrentQuestionText();
                switch (index) {
                   case 0:
                      // option 1
@@ -238,7 +260,30 @@ public class Movie101GUI extends JFrame implements ActionListener {
                   default:
                      throw new IllegalStateException("No answer selected");
                }
+               System.out.println(preSubmission);
+               System.out.println(quiz.getCurrentQuestionText());
+               secondTry = preSubmission.equals(quiz.getCurrentQuestionText());
+               
                // end determination of radio button, and end of nested switch
+               if (secondTry) {
+                  System.out.println("correct loop");
+                  answerButtonGroup.getSelection().setEnabled(false);
+                  answerButtonGroup.clearSelection();
+                  submitAnswer.setEnabled(false);
+               } else {
+                  // handle button enabling/disabling
+                  // disable selected radio button
+                  answerButtonGroup.getSelection().setEnabled(false);
+                  // disable submit answer
+                  submitAnswer.setEnabled(false);
+                  // disable radio buttons
+                  for (JRadioButton jRadioButton : answerButtons) {
+                     jRadioButton.setEnabled(false);
+                     // disable submit answer
+                     submitAnswer.setEnabled(false);
+                     nextQuestion.setEnabled(true);
+                  }
+               }
                break;
             default:
                break;
@@ -251,11 +296,14 @@ public class Movie101GUI extends JFrame implements ActionListener {
    
    private void refresh() {
       try {
+         // set the question label
          questionLabel.setText(quiz.getCurrentQuestionText());
-         choices = quiz.getCurrentQuestionChoices();
          
+         // update radio buttons
+         choices = quiz.getCurrentQuestionChoices();
          for (int i = 0; i < answerButtons.size(); i++) {
             answerButtons.get(i).setText(choices[i]);
+            
          }
          
          responseLabel.setText("");
