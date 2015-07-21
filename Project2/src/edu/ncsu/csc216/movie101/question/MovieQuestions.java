@@ -200,25 +200,30 @@ public class MovieQuestions {
        */
       @Override
       public String processAnswer(String answer) throws EmptyQuestionListException {
-         if (answer.equalsIgnoreCase(getCurrentQuestionAnswer())) { // if answer is correct
-            // progress state onto standard
-            if (numCorrectInRow == 1) {
-               state = stdState;
+         if (answer.equalsIgnoreCase(getCurrentQuestionAnswer())) {
+        	 attempts++;
+        	 if (numCorrectInRow == 1 && attempts == 1) {
+            	numCorrectInRow = 0;
+            	state = stdState;
+            } else if (attempts == 1) {
+            	attempts = 0;
+            	numCorrectInRow++;
+            	nextQuestion();
             } else {
-               // it's right, but not right enough
-               nextQuestion();
-               numCorrectInRow++;
+            	attempts = 0;
+            	nextQuestion();
             }
             return CORRECT;
          } else {
             attempts++;
+            numCorrectInRow = 0;
             if (attempts >= 2) {
                attempts = 0;
                nextQuestion();
                return INCORRECT;
             } else {
-               ElementaryQuestion elem = (ElementaryQuestion) getCurrentQuestion();
-               return INCORRECT + SEPARATOR + HINT + elem.getHint();
+            	ElementaryQuestion elem = (ElementaryQuestion) getCurrentQuestion();
+                return INCORRECT + SEPARATOR + HINT + elem.getHint();
             }
             
          }
@@ -265,8 +270,9 @@ public class MovieQuestions {
             }
             return CORRECT;
          } else {
-            state = elemState;
-            return INCORRECT;
+        	 numCorrectInRow = 0;
+        	 state = elemState;
+        	 return INCORRECT;
          }
       }
       
