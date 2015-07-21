@@ -15,10 +15,10 @@ public class CreateTestFile {
                                "The first one");
       r.makeElementaryQuestion("Easy Question (pick B)", "1",
                                "2", "3", "4", "b",
-                               "The first one");
+                               "The second one");
       r.makeElementaryQuestion("Easy Question (pick C)", "1",
                                "2", "3", "4", "c",
-                               "The first one");
+                               "The third one");
       r.makeStandardQuestion("Standard Question (pick A)", "1", "2",
                              "3", "4", "a");
       r.makeStandardQuestion("Standard Question (pick B)", "1", "2",
