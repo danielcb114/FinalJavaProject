@@ -198,16 +198,19 @@ public class MovieQuestions {
        */
       @Override
       public String processAnswer(String answer) throws EmptyQuestionListException {
-         if (answer.equalsIgnoreCase(getCurrentQuestionAnswer())) {
+         if (answer.equalsIgnoreCase(getCurrentQuestionAnswer())) { // if answer is correct
+            // progress state onto standard
             if (attempts == 1 && numCorrectInRow == 1) {
                state = stdState;
             } else {
+               // it's right, but not right enough
                nextQuestion();
                numCorrectInRow++;
             }
             return CORRECT;
          } else {
-            if (attempts > 2) {
+            attempts++;
+            if (attempts >= 2) {
                nextQuestion();
                return INCORRECT;
             } else {
