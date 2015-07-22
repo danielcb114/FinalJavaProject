@@ -35,21 +35,17 @@ public class MovieQuizTest {
       int expectedQuestions = 3;
       int numEasyQuestions = 3;
       
-      System.out.printf("\nBeginning of testHasMoreQuestions console:\n");
       
       MovieQuiz quiz = new MovieQuiz(testFile);
       
       assertTrue(quiz.hasMoreQuestions());
       
       // answer one standard question incorrectly
-      System.out.println(quiz.getCurrentQuestionText());
       quiz.processAnswer("d");
       
       // answer each easy question incorrectly twice
       for (int i = 0; i < numEasyQuestions; i++) {
-         System.out.println(quiz.getCurrentQuestionText());
          quiz.processAnswer("d");
-         System.out.println(quiz.getCurrentQuestionText());
          quiz.processAnswer("d");
       }
       
@@ -60,7 +56,7 @@ public class MovieQuizTest {
    public void testGetCurrentQuestionText() throws Exception {
       MovieQuiz quiz = new MovieQuiz(testFile);
       
-      assertEquals(quiz.getCurrentQuestionText(), "Standard Question (pick A)"); // expected first
+      assertEquals("Standard Question (pick A)",quiz.getCurrentQuestionText()); // expected first
                                                                                  // standard
                                                                                  // question
    }
@@ -91,23 +87,23 @@ public class MovieQuizTest {
       assertEquals("Easy Question (pick A)",quiz.getCurrentQuestionText());
       assertEquals( "Incorrect!",quiz.processAnswer("d"));
       // answer easy question correctly, expected Correct!, expected EasyQuestionB
-      assertEquals(quiz.getCurrentQuestionText(), "Easy Question (pick B)");
+      assertEquals("Easy Question (pick B)",quiz.getCurrentQuestionText());
       assertEquals( "Correct!",quiz.processAnswer("b"));
       // answer easy question correctly, expected Correct!, expected EasyQuestionC
-      assertEquals(quiz.getCurrentQuestionText(), "Easy Question (pick C)");
+      assertEquals("Easy Question (pick C)",quiz.getCurrentQuestionText());
       assertEquals("Correct!",quiz.processAnswer("c"));
       // answer standard question correctly, expected Correct!, expected StandardQuestionB
       // FAIL:StandardQuestionA has already been asked earlier, shouldn't be asked again
       assertEquals("Standard Question (pick B)",quiz.getCurrentQuestionText());
-      assertEquals( "Correct!",quiz.processAnswer("b"));
+      assertEquals("Correct!",quiz.processAnswer("b"));
       
       MovieQuiz quiz2 = new MovieQuiz(testFile); // test again
       
       // Answer standard question correctly, expected Correct!, expected StandarQuestionA
       assertEquals("Standard Question (pick A)",quiz2.getCurrentQuestionText());
-      assertEquals(quiz2.processAnswer("a"), "Correct!");
+      assertEquals("Correct!",quiz2.processAnswer("a"));
       // Answer standard question correctly, expected Correct!, expected StandardQuestionB
-      assertEquals( "Standard Question (pick B)",quiz2.getCurrentQuestionText());
+      assertEquals("Standard Question (pick B)",quiz2.getCurrentQuestionText());
       assertEquals("Correct!",quiz2.processAnswer("b"));
       // Answer hard question correctly, expected Congratulations, expected HardQuestionA
       assertEquals("Hard Question (Pick A)",quiz2.getCurrentQuestionText());
