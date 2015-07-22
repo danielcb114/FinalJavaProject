@@ -98,8 +98,8 @@ public class MovieQuizTest {
       assertEquals("Correct!",quiz.processAnswer("c"));
       // answer standard question correctly, expected Correct!, expected StandardQuestionB
       // FAIL:StandardQuestionA has already been asked earlier, shouldn't be asked again
-      assertEquals(quiz.getCurrentQuestionText(), "Standard Question (pick B)");
-      assertEquals(quiz.processAnswer("b"), "Correct!");
+      assertEquals("Standard Question (pick B)",quiz.getCurrentQuestionText());
+      assertEquals( "Correct!",quiz.processAnswer("b"));
       
       MovieQuiz quiz2 = new MovieQuiz(testFile); // test again
       
