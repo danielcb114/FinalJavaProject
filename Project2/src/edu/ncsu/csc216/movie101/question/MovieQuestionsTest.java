@@ -1,5 +1,6 @@
 package edu.ncsu.csc216.movie101.question;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -88,7 +89,43 @@ public class MovieQuestionsTest {
    
    @Test
    public void testGetCurrentQuestionText() throws Exception {
-      throw new RuntimeException("not yet implemented");
+      
+      assertEquals(listStd.get(0).getQuestion(), movieQuestions.getCurrentQuestionText());
+      System.out.println(movieQuestions.processAnswer("a"));// wrong answer to standard
+      
+      assertEquals(listElem.get(0).getQuestion(), movieQuestions.getCurrentQuestionText());
+      System.out.println(movieQuestions.processAnswer("a"));// wrong answer to 1st easy, 1st attempt
+      
+      assertEquals(listElem.get(0).getQuestion(), movieQuestions.getCurrentQuestionText());
+      System.out.println(movieQuestions.processAnswer("d")); // right answer to 1st easy, 2nd
+                                                             // attempt
+      
+      assertEquals(listElem.get(1).getQuestion(), movieQuestions.getCurrentQuestionText());
+      System.out.println(movieQuestions.processAnswer("c")); // right answer to 2nd easy
+      
+      assertEquals(listElem.get(2).getQuestion(), movieQuestions.getCurrentQuestionText());
+      System.out.println(movieQuestions.processAnswer("b")); // right answer to 3rd easy
+      
+      assertEquals(listStd.get(1).getQuestion(), movieQuestions.getCurrentQuestionText());
+      System.out.println(movieQuestions.processAnswer("c")); // right answer to 2nd standard
+      
+      assertEquals(listStd.get(2).getQuestion(), movieQuestions.getCurrentQuestionText());
+      System.out.println(movieQuestions.processAnswer("b")); // right answer to 3rd standard
+      
+      System.out.println(movieQuestions.getCurrentQuestionText());
+      
+      assertEquals(listAdv.get(0).getQuestion(), movieQuestions.getCurrentQuestionText());
+      // PROBLEM LIES HERE
+      System.out.println(movieQuestions.processAnswer("a")); // right answer to 1st hard
+      
+      System.out.println(movieQuestions.getCurrentQuestionText());
+      
+      assertEquals(listAdv.get(1).getQuestion(), movieQuestions.getCurrentQuestionText());
+      movieQuestions.processAnswer("a"); // right answer to 2nd hard
+      
+      assertEquals(listAdv.get(2).getQuestion(), movieQuestions.getCurrentQuestionText());
+      movieQuestions.processAnswer("a"); // right answer to 3rd hard
+      
    }
    
    @Test
