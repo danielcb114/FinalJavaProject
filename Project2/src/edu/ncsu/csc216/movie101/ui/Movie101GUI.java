@@ -60,7 +60,7 @@ public class Movie101GUI extends JFrame implements ActionListener {
    private static final String QUIT_TEXT = "QUIT";
    private static final String CHOICE = "choice"; // for the radio button's action command
    
-   private Container masterPane;
+   Container masterPane;
    
    JFrame frame;
    
@@ -260,9 +260,14 @@ public class Movie101GUI extends JFrame implements ActionListener {
                   default:
                      throw new IllegalStateException("No answer selected");
                }
-               System.out.println(preSubmission);
-               System.out.println(quiz.getCurrentQuestionText());
-               secondTry = preSubmission.equals(quiz.getCurrentQuestionText());
+               
+               if (quiz.hasMoreQuestions()) {
+                  System.out.println(preSubmission);
+                  System.out.println(quiz.getCurrentQuestionText());
+                  secondTry = preSubmission.equals(quiz.getCurrentQuestionText());
+               } else {
+                  secondTry = false;
+               }
                
                // end determination of radio button, and end of nested switch
                if (secondTry) {
@@ -271,17 +276,22 @@ public class Movie101GUI extends JFrame implements ActionListener {
                   answerButtonGroup.clearSelection();
                   submitAnswer.setEnabled(false);
                } else {
-                  // handle button enabling/disabling
-                  // disable selected radio button
-                  answerButtonGroup.getSelection().setEnabled(false);
-                  // disable submit answer
-                  submitAnswer.setEnabled(false);
-                  // disable radio buttons
-                  for (JRadioButton jRadioButton : answerButtons) {
-                     jRadioButton.setEnabled(false);
+                  if (quiz.hasMoreQuestions()) {
+                     // handle button enabling/disabling
+                     // disable selected radio button
+                     answerButtonGroup.getSelection().setEnabled(false);
                      // disable submit answer
                      submitAnswer.setEnabled(false);
-                     nextQuestion.setEnabled(true);
+                     // disable radio buttons
+                     for (JRadioButton jRadioButton : answerButtons) {
+                        jRadioButton.setEnabled(false);
+                        // disable submit answer
+                        submitAnswer.setEnabled(false);
+                        nextQuestion.setEnabled(true);
+                     }
+                  } else {
+                     submitAnswer.setEnabled(false);
+                     nextQuestion.setEnabled(false);
                   }
                }
                break;

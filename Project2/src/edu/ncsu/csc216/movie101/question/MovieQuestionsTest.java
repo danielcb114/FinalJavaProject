@@ -91,33 +91,33 @@ public class MovieQuestionsTest {
    public void testGetCurrentQuestionText() throws Exception {
       
       assertEquals(listStd.get(0).getQuestion(), movieQuestions.getCurrentQuestionText());
-      System.out.println(movieQuestions.processAnswer("a"));// wrong answer to standard
+      movieQuestions.processAnswer("a");// wrong answer to standard
       
       assertEquals(listElem.get(0).getQuestion(), movieQuestions.getCurrentQuestionText());
-      System.out.println(movieQuestions.processAnswer("a"));// wrong answer to 1st easy, 1st attempt
+      movieQuestions.processAnswer("a");// wrong answer to 1st easy, 1st attempt
       
       assertEquals(listElem.get(0).getQuestion(), movieQuestions.getCurrentQuestionText());
-      System.out.println(movieQuestions.processAnswer("d")); // right answer to 1st easy, 2nd
+      movieQuestions.processAnswer("d"); // right answer to 1st easy, 2nd
       
       assertEquals(listElem.get(1).getQuestion(), movieQuestions.getCurrentQuestionText());
-      System.out.println(movieQuestions.processAnswer("c")); // right answer to 2nd easy
+      movieQuestions.processAnswer("c"); // right answer to 2nd easy
       
       assertEquals(listElem.get(2).getQuestion(), movieQuestions.getCurrentQuestionText());
-      System.out.println(movieQuestions.processAnswer("b")); // right answer to 3rd easy
+      movieQuestions.processAnswer("b"); // right answer to 3rd easy
       
       assertEquals(listStd.get(1).getQuestion(), movieQuestions.getCurrentQuestionText());
-      System.out.println(movieQuestions.processAnswer("c")); // right answer to 2nd standard
+      movieQuestions.processAnswer("c"); // right answer to 2nd standard
       
       assertEquals(listStd.get(2).getQuestion(), movieQuestions.getCurrentQuestionText());
-      System.out.println(movieQuestions.processAnswer("b")); // right answer to 3rd standard
+      movieQuestions.processAnswer("b"); // right answer to 3rd standard
       
-      System.out.println(movieQuestions.getCurrentQuestionText());
+      movieQuestions.getCurrentQuestionText();
       
       assertEquals(listAdv.get(0).getQuestion(), movieQuestions.getCurrentQuestionText());
       // PROBLEM LIES HERE
-      System.out.println(movieQuestions.processAnswer("d")); // right answer to 1st hard
+      movieQuestions.processAnswer("d"); // right answer to 1st hard
       
-      System.out.println(movieQuestions.getCurrentQuestionText());
+      movieQuestions.getCurrentQuestionText();
       
       assertEquals(listAdv.get(1).getQuestion(), movieQuestions.getCurrentQuestionText());
       movieQuestions.processAnswer("c"); // right answer to 2nd hard
@@ -132,25 +132,25 @@ public class MovieQuestionsTest {
       String[] choices = { "A", "B", "C", "D" };
       
       assertTrue(equalAnswers(choices, movieQuestions.getCurrentQuestionChoices()));
-      System.out.println(movieQuestions.processAnswer("a"));// wrong answer to standard
+      movieQuestions.processAnswer("a");// wrong answer to standard
       
       assertTrue(equalAnswers(choices, movieQuestions.getCurrentQuestionChoices()));
-      System.out.println(movieQuestions.processAnswer("a"));// wrong answer to 1st easy, 1st attempt
+      movieQuestions.processAnswer("a");// wrong answer to 1st easy, 1st attempt
       
       assertTrue(equalAnswers(choices, movieQuestions.getCurrentQuestionChoices()));
-      System.out.println(movieQuestions.processAnswer("d")); // right answer to 1st easy, 2nd
+      movieQuestions.processAnswer("d"); // right answer to 1st easy, 2nd
       
       assertTrue(equalAnswers(choices, movieQuestions.getCurrentQuestionChoices()));
-      System.out.println(movieQuestions.processAnswer("c")); // right answer to 2nd easy
+      movieQuestions.processAnswer("c"); // right answer to 2nd easy
       
       assertTrue(equalAnswers(choices, movieQuestions.getCurrentQuestionChoices()));
-      System.out.println(movieQuestions.processAnswer("b")); // right answer to 3rd easy
+      movieQuestions.processAnswer("b"); // right answer to 3rd easy
       
       assertTrue(equalAnswers(choices, movieQuestions.getCurrentQuestionChoices()));
-      System.out.println(movieQuestions.processAnswer("c")); // right answer to 2nd standard
+      movieQuestions.processAnswer("c"); // right answer to 2nd standard
       
       assertTrue(equalAnswers(choices, movieQuestions.getCurrentQuestionChoices()));
-      System.out.println(movieQuestions.processAnswer("b")); // right answer to 3rd standard
+      movieQuestions.processAnswer("b"); // right answer to 3rd standard
       
       assertTrue(equalAnswers(choices, movieQuestions.getCurrentQuestionChoices()));
       // PROBLEM LIES HERE
