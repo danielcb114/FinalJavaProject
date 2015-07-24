@@ -98,7 +98,6 @@ public class MovieQuestionsTest {
       
       assertEquals(listElem.get(0).getQuestion(), movieQuestions.getCurrentQuestionText());
       System.out.println(movieQuestions.processAnswer("d")); // right answer to 1st easy, 2nd
-                                                             // attempt
       
       assertEquals(listElem.get(1).getQuestion(), movieQuestions.getCurrentQuestionText());
       System.out.println(movieQuestions.processAnswer("c")); // right answer to 2nd easy
@@ -130,7 +129,40 @@ public class MovieQuestionsTest {
    
    @Test
    public void testGetCurrentQuestionChoices() throws Exception {
-      throw new RuntimeException("not yet implemented");
+      String[] choices = { "A", "B", "C", "D" };
+      
+      assertTrue(equalAnswers(choices, movieQuestions.getCurrentQuestionChoices()));
+      System.out.println(movieQuestions.processAnswer("a"));// wrong answer to standard
+      
+      assertTrue(equalAnswers(choices, movieQuestions.getCurrentQuestionChoices()));
+      System.out.println(movieQuestions.processAnswer("a"));// wrong answer to 1st easy, 1st attempt
+      
+      assertTrue(equalAnswers(choices, movieQuestions.getCurrentQuestionChoices()));
+      System.out.println(movieQuestions.processAnswer("d")); // right answer to 1st easy, 2nd
+      
+      assertTrue(equalAnswers(choices, movieQuestions.getCurrentQuestionChoices()));
+      System.out.println(movieQuestions.processAnswer("c")); // right answer to 2nd easy
+      
+      assertTrue(equalAnswers(choices, movieQuestions.getCurrentQuestionChoices()));
+      System.out.println(movieQuestions.processAnswer("b")); // right answer to 3rd easy
+      
+      assertTrue(equalAnswers(choices, movieQuestions.getCurrentQuestionChoices()));
+      System.out.println(movieQuestions.processAnswer("c")); // right answer to 2nd standard
+      
+      assertTrue(equalAnswers(choices, movieQuestions.getCurrentQuestionChoices()));
+      System.out.println(movieQuestions.processAnswer("b")); // right answer to 3rd standard
+      
+      assertTrue(equalAnswers(choices, movieQuestions.getCurrentQuestionChoices()));
+      // PROBLEM LIES HERE
+      movieQuestions.processAnswer("a"); // right answer to 1st hard
+      
+      assertTrue(equalAnswers(choices, movieQuestions.getCurrentQuestionChoices()));
+      
+      assertTrue(equalAnswers(choices, movieQuestions.getCurrentQuestionChoices()));
+      movieQuestions.processAnswer("a"); // right answer to 2nd hard
+      
+      assertTrue(equalAnswers(choices, movieQuestions.getCurrentQuestionChoices()));
+      movieQuestions.processAnswer("a"); // right answer to 3rd hard
    }
    
    @Test
@@ -170,12 +202,53 @@ public class MovieQuestionsTest {
    
    @Test
    public void testGetNumCorrectAnswers() throws Exception {
-      throw new RuntimeException("not yet implemented");
+      movieQuestions.processAnswer("a");// wrong answer to standard
+      
+      movieQuestions.processAnswer("a");// wrong answer to 1st easy, 1st attempt
+      
+      movieQuestions.processAnswer("d"); // right answer to 1st easy, 2nd
+                                         // attempt
+      
+      movieQuestions.processAnswer("c"); // right answer to 2nd easy
+      
+      movieQuestions.processAnswer("b"); // right answer to 3rd easy
+      
+      movieQuestions.processAnswer("c"); // right answer to 2nd standard
+      
+      movieQuestions.processAnswer("b"); // right answer to 3rd standard
+      
+      movieQuestions.processAnswer("a"); // right answer to 1st hard
+      
+      movieQuestions.processAnswer("a"); // right answer to 2nd hard
+      
+      movieQuestions.processAnswer("a"); // right answer to 3rd hard
+      
+      assertEquals(2, movieQuestions.getNumCorrectAnswers());
    }
    
    @Test
-   public void testGetNumAttemptQuests() throws Exception {
-      throw new RuntimeException("not yet implemented");
+   public void testGetNumAttemptQuestions() throws Exception {
+      movieQuestions.processAnswer("a");// wrong answer to standard
+      
+      movieQuestions.processAnswer("a");// wrong answer to 1st easy, 1st attempt
+      
+      movieQuestions.processAnswer("d"); // right answer to 1st easy, 2nd
+      
+      movieQuestions.processAnswer("c"); // right answer to 2nd easy
+      
+      movieQuestions.processAnswer("b"); // right answer to 3rd easy
+      
+      movieQuestions.processAnswer("c"); // right answer to 2nd standard
+      
+      movieQuestions.processAnswer("b"); // right answer to 3rd standard
+      
+      movieQuestions.processAnswer("a"); // right answer to 1st hard
+      
+      movieQuestions.processAnswer("a"); // right answer to 2nd hard
+      
+      movieQuestions.processAnswer("a"); // right answer to 3rd hard
+      
+      assertEquals(10, movieQuestions.getNumAttemptQuestions());
    }
    
    private ElementaryQuestion makeEasyQuestion(String question, String choiceA, String choiceB,
