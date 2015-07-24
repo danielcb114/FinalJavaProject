@@ -117,7 +117,7 @@ public class MovieQuestions {
     * 
     * @return the number of user correct answers
     */
-   public int getNumCorretAnswers() {
+   public int getNumCorrectAnswers() {
       return numCorrectAnswers;
    }
    
