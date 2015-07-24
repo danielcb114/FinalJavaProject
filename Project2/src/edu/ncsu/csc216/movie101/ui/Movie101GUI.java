@@ -214,6 +214,9 @@ public class Movie101GUI extends JFrame implements ActionListener {
                   System.out.println(jRadioButton.isSelected());
                }
                
+               // disable next question button
+               nextQuestion.setEnabled(false);
+               
                answerButtonGroup.clearSelection();
                
                refresh();
