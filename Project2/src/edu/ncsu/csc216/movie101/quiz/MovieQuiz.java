@@ -82,7 +82,7 @@ public class MovieQuiz implements QuizMaster {
 	 */
 	@Override
 	public int getNumCorrectQuestions() {
-		return questions.getNumCorretAnswers();
+		return questions.getNumCorrectAnswers();
 	}
 
 	/**

@@ -169,7 +169,7 @@ public class MovieQuestionsTest {
    }
    
    @Test
-   public void testGetNumCorretAnswers() throws Exception {
+   public void testGetNumCorrectAnswers() throws Exception {
       throw new RuntimeException("not yet implemented");
    }
    
