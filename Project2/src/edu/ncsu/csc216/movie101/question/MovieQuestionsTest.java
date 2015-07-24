@@ -34,9 +34,9 @@ public class MovieQuestionsTest {
       listAdv = new ArrayList<AdvancedQuestion>();
       
       // add to easy list
-      listElem.add(makeEasyQuestion("Easy question 1", "A", "B", "C", "d", "d", "Pick D"));
-      listElem.add(makeEasyQuestion("Easy question 2", "A", "B", "C", "c", "c", "Pick C"));
-      listElem.add(makeEasyQuestion("Easy question 3", "A", "B", "C", "b", "b", "Pick B"));
+      listElem.add(makeEasyQuestion("Easy question 1", "A", "B", "C", "D", "d", "Pick D"));
+      listElem.add(makeEasyQuestion("Easy question 2", "A", "B", "C", "D", "c", "Pick C"));
+      listElem.add(makeEasyQuestion("Easy question 3", "A", "B", "C", "D", "b", "Pick B"));
       
       // add to standard list
       listStd.add(makeQuestion("Question 1", "A", "B", "C", "D", "d"));
@@ -115,15 +115,15 @@ public class MovieQuestionsTest {
       
       assertEquals(listAdv.get(0).getQuestion(), movieQuestions.getCurrentQuestionText());
       // PROBLEM LIES HERE
-      System.out.println(movieQuestions.processAnswer("a")); // right answer to 1st hard
+      System.out.println(movieQuestions.processAnswer("d")); // right answer to 1st hard
       
       System.out.println(movieQuestions.getCurrentQuestionText());
       
       assertEquals(listAdv.get(1).getQuestion(), movieQuestions.getCurrentQuestionText());
-      movieQuestions.processAnswer("a"); // right answer to 2nd hard
+      movieQuestions.processAnswer("c"); // right answer to 2nd hard
       
       assertEquals(listAdv.get(2).getQuestion(), movieQuestions.getCurrentQuestionText());
-      movieQuestions.processAnswer("a"); // right answer to 3rd hard
+      movieQuestions.processAnswer("b"); // right answer to 3rd hard
       
    }
    
@@ -154,15 +154,15 @@ public class MovieQuestionsTest {
       
       assertTrue(equalAnswers(choices, movieQuestions.getCurrentQuestionChoices()));
       // PROBLEM LIES HERE
-      movieQuestions.processAnswer("a"); // right answer to 1st hard
+      movieQuestions.processAnswer("d"); // right answer to 1st hard
       
       assertTrue(equalAnswers(choices, movieQuestions.getCurrentQuestionChoices()));
       
       assertTrue(equalAnswers(choices, movieQuestions.getCurrentQuestionChoices()));
-      movieQuestions.processAnswer("a"); // right answer to 2nd hard
+      movieQuestions.processAnswer("c"); // right answer to 2nd hard
       
       assertTrue(equalAnswers(choices, movieQuestions.getCurrentQuestionChoices()));
-      movieQuestions.processAnswer("a"); // right answer to 3rd hard
+      movieQuestions.processAnswer("b"); // right answer to 3rd hard
    }
    
    @Test
@@ -217,13 +217,13 @@ public class MovieQuestionsTest {
       
       movieQuestions.processAnswer("b"); // right answer to 3rd standard
       
-      movieQuestions.processAnswer("a"); // right answer to 1st hard
+      movieQuestions.processAnswer("d"); // right answer to 1st hard
       
-      movieQuestions.processAnswer("a"); // right answer to 2nd hard
+      movieQuestions.processAnswer("c"); // right answer to 2nd hard
       
-      movieQuestions.processAnswer("a"); // right answer to 3rd hard
+      movieQuestions.processAnswer("b"); // right answer to 3rd hard
       
-      assertEquals(2, movieQuestions.getNumCorrectAnswers());
+      assertEquals(8, movieQuestions.getNumCorrectAnswers());
    }
    
    @Test
@@ -242,11 +242,11 @@ public class MovieQuestionsTest {
       
       movieQuestions.processAnswer("b"); // right answer to 3rd standard
       
-      movieQuestions.processAnswer("a"); // right answer to 1st hard
+      movieQuestions.processAnswer("d"); // right answer to 1st hard
       
-      movieQuestions.processAnswer("a"); // right answer to 2nd hard
+      movieQuestions.processAnswer("c"); // right answer to 2nd hard
       
-      movieQuestions.processAnswer("a"); // right answer to 3rd hard
+      movieQuestions.processAnswer("b"); // right answer to 3rd hard
       
       assertEquals(10, movieQuestions.getNumAttemptQuestions());
    }
