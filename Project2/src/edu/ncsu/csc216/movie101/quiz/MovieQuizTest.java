@@ -8,6 +8,9 @@ import org.junit.Test;
 
 import edu.ncsu.csc216.question_library.QuestionException;
 
+/**
+ * @author dcbrewer
+ */
 public class MovieQuizTest {
    
    public static String testFile = "test.xml";
@@ -35,7 +38,6 @@ public class MovieQuizTest {
       int expectedQuestions = 3;
       int numEasyQuestions = 3;
       
-      
       MovieQuiz quiz = new MovieQuiz(testFile);
       
       assertTrue(quiz.hasMoreQuestions());
@@ -56,7 +58,7 @@ public class MovieQuizTest {
    public void testGetCurrentQuestionText() throws Exception {
       MovieQuiz quiz = new MovieQuiz(testFile);
       
-      assertEquals("Standard Question (pick A)",quiz.getCurrentQuestionText()); // expected first
+      assertEquals("Standard Question (pick A)", quiz.getCurrentQuestionText()); // expected first
                                                                                  // standard
                                                                                  // question
    }
@@ -77,43 +79,43 @@ public class MovieQuizTest {
       MovieQuiz quiz = new MovieQuiz(testFile);
       
       // answer standard question incorrectly, expected Incorrect!, expected StandardQuestionA
-      assertEquals("Standard Question (pick A)",quiz.getCurrentQuestionText());
+      assertEquals("Standard Question (pick A)", quiz.getCurrentQuestionText());
       assertEquals(quiz.processAnswer("b"), "Incorrect!");
       // answer easy question incorrectly, expected Incorrect! and hint, expected EasyQuestionA
-      assertEquals("Easy Question (pick A)",quiz.getCurrentQuestionText());
+      assertEquals("Easy Question (pick A)", quiz.getCurrentQuestionText());
       // System.out.println(quiz.processAnswer("c"));
-      assertEquals("Incorrect! Hint: The first one",quiz.processAnswer("c"));
+      assertEquals("Incorrect! Hint: The first one", quiz.processAnswer("c"));
       // answer easy question incorrectly again, expected Incorrect!, expected EasyQuestionA
-      assertEquals("Easy Question (pick A)",quiz.getCurrentQuestionText());
-      assertEquals( "Incorrect!",quiz.processAnswer("d"));
+      assertEquals("Easy Question (pick A)", quiz.getCurrentQuestionText());
+      assertEquals("Incorrect!", quiz.processAnswer("d"));
       // answer easy question correctly, expected Correct!, expected EasyQuestionB
-      assertEquals("Easy Question (pick B)",quiz.getCurrentQuestionText());
-      assertEquals( "Correct!",quiz.processAnswer("b"));
+      assertEquals("Easy Question (pick B)", quiz.getCurrentQuestionText());
+      assertEquals("Correct!", quiz.processAnswer("b"));
       // answer easy question correctly, expected Correct!, expected EasyQuestionC
-      assertEquals("Easy Question (pick C)",quiz.getCurrentQuestionText());
-      assertEquals("Correct!",quiz.processAnswer("c"));
+      assertEquals("Easy Question (pick C)", quiz.getCurrentQuestionText());
+      assertEquals("Correct!", quiz.processAnswer("c"));
       // answer standard question correctly, expected Correct!, expected StandardQuestionB
       // FAIL:StandardQuestionA has already been asked earlier, shouldn't be asked again
-      assertEquals("Standard Question (pick B)",quiz.getCurrentQuestionText());
-      assertEquals("Correct!",quiz.processAnswer("b"));
+      assertEquals("Standard Question (pick B)", quiz.getCurrentQuestionText());
+      assertEquals("Correct!", quiz.processAnswer("b"));
       
       MovieQuiz quiz2 = new MovieQuiz(testFile); // test again
       
       // Answer standard question correctly, expected Correct!, expected StandarQuestionA
-      assertEquals("Standard Question (pick A)",quiz2.getCurrentQuestionText());
-      assertEquals("Correct!",quiz2.processAnswer("a"));
+      assertEquals("Standard Question (pick A)", quiz2.getCurrentQuestionText());
+      assertEquals("Correct!", quiz2.processAnswer("a"));
       // Answer standard question correctly, expected Correct!, expected StandardQuestionB
-      assertEquals("Standard Question (pick B)",quiz2.getCurrentQuestionText());
-      assertEquals("Correct!",quiz2.processAnswer("b"));
+      assertEquals("Standard Question (pick B)", quiz2.getCurrentQuestionText());
+      assertEquals("Correct!", quiz2.processAnswer("b"));
       // Answer hard question correctly, expected Congratulations, expected HardQuestionA
-      assertEquals("Hard Question (Pick A)",quiz2.getCurrentQuestionText());
-      assertEquals("Correct! Good Job!",quiz2.processAnswer("a"));
+      assertEquals("Hard Question (Pick A)", quiz2.getCurrentQuestionText());
+      assertEquals("Correct! Good Job!", quiz2.processAnswer("a"));
       // Answer hard question correctly, expected Congratulations, expected HardQuestionB
-      assertEquals("Hard Question (Pick B)",quiz2.getCurrentQuestionText());
-      assertEquals("Correct! Good Job!",quiz2.processAnswer("b"));
+      assertEquals("Hard Question (Pick B)", quiz2.getCurrentQuestionText());
+      assertEquals("Correct! Good Job!", quiz2.processAnswer("b"));
       // Answer hard question incorrectly, expected Incorrect!, expected HardQuestionC
-      assertEquals("Hard Question (Pick C)",quiz2.getCurrentQuestionText());
-      assertEquals("Incorrect!",quiz2.processAnswer("d"));
+      assertEquals("Hard Question (Pick C)", quiz2.getCurrentQuestionText());
+      assertEquals("Incorrect!", quiz2.processAnswer("d"));
    }
    
    @Test

@@ -14,6 +14,9 @@ import edu.ncsu.csc216.question_library.AdvancedQuestion;
 import edu.ncsu.csc216.question_library.ElementaryQuestion;
 import edu.ncsu.csc216.question_library.StandardQuestion;
 
+/**
+ * @author dcbrewer
+ */
 public class MovieQuestionsTest {
    
    MovieQuestions movieQuestions;

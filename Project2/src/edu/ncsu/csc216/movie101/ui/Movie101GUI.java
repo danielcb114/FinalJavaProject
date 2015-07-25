@@ -25,6 +25,8 @@ import edu.ncsu.csc216.question_library.QuestionException;
 /**
  * The GUI for the movie tutor program. Handles all user interaction, including loading the
  * appropriate question file, the question interface, and printing the user's results.
+ * 
+ * @author dcbrewer
  */
 public class Movie101GUI extends JFrame implements ActionListener {
    
