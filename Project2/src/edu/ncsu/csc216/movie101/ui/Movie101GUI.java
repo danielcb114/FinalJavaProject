@@ -22,51 +22,128 @@ import edu.ncsu.csc216.movie101.quiz.MovieQuiz;
 import edu.ncsu.csc216.movie101.util.EmptyQuestionListException;
 import edu.ncsu.csc216.question_library.QuestionException;
 
+/**
+ * The GUI for the movie tutor program. Handles all user interaction, including loading the
+ * appropriate question file, the question interface, and printing the user's results.
+ */
 public class Movie101GUI extends JFrame implements ActionListener {
    
+   /**
+    * The title of the JFrame containing the app
+    */
    private static final String TITLE = "Movie 101";
    
-   // Quiz object
-   private MovieQuiz quiz;
-   
-   // whether or not the user gets a second try
-   boolean secondTry;
-   
-   // window parameters
-   private static final int WIDTH = 600; // 500
-   private static final int HEIGHT = 250; // 250
-   
-   // inputs
-   private String[] choices;
-   private String responseString;
-   
-   // GUI groups
-   JLabel questionLabel;
-   ArrayList<JRadioButton> answerButtons = new ArrayList<JRadioButton>();
-   
-   // answer group
-   private static final String EMPTY_RESPONSE = ""; // used for testing
-   JLabel responseLabel;
-   
-   ButtonGroup answerButtonGroup;
-   
-   private static final String SUBMIT_ANSWER_TEXT = "Submit Answer";
-   // Question controls group
-   JButton submitAnswer;
-   JButton nextQuestion;
-   JButton quit;
-   
-   private static final String NEXT_QUESTION_TEXT = "Next Question";
-   private static final String QUIT_TEXT = "QUIT";
-   private static final String CHOICE = "choice"; // for the radio button's action command
-   
-   Container masterPane;
-   
+   /**
+    * The quiz'z frame
+    */
    JFrame frame;
    
-   // text font
+   /**
+    * The container containing all of the apps primary components
+    */
+   Container masterPane;
+   
+   /**
+    * Quiz object field
+    */
+   private MovieQuiz quiz;
+   
+   /**
+    * whether or not the user gets a second try
+    */
+   boolean secondTry;
+   
+   /**
+    * The width of the app window
+    */
+   private static final int WIDTH = 600; // 500
+   /**
+    * The height of the app window
+    */
+   private static final int HEIGHT = 250; // 250
+   
+   /**
+    * String array holding the choices for each answer choice
+    */
+   private String[] choices;
+   
+   /**
+    * String containing the response after a user submits a question, e.g., "Great job!"
+    */
+   private String responseString;
+   
+   /**
+    * The label containing the question text
+    */
+   
+   JLabel questionLabel;
+   
+   /**
+    * The list of radio buttons corresponding to each answer choice
+    */
+   ArrayList<JRadioButton> answerButtons = new ArrayList<JRadioButton>();
+   
+   /**
+    * The group containing the answer radio buttons
+    */
+   ButtonGroup answerButtonGroup;
+   
+   /**
+    * The label used for by the action listeners for the radiop buttons
+    */
+   private static final String CHOICE = "choice"; // for the radio button's action command
+   
+   /**
+    * The string containing an empty response to reset back to after each question.
+    */
+   private static final String EMPTY_RESPONSE = "";
+   
+   /**
+    * The label containing the question response text, e.g. "Great job!"
+    */
+   JLabel responseLabel;
+   
+   /**
+    * The text for the submit answer button
+    */
+   private static final String SUBMIT_ANSWER_TEXT = "Submit Answer";
+   
+   /**
+    * The submitAnswer JButton
+    */
+   JButton submitAnswer;
+   
+   /**
+    * The text for the nextQuestion button
+    */
+   private static final String NEXT_QUESTION_TEXT = "Next Question";
+   
+   /**
+    * The nextQuestion JButton
+    */
+   JButton nextQuestion;
+   
+   /**
+    * The text for the quit button
+    */
+   private static final String QUIT_TEXT = "QUIT";
+   
+   /**
+    * The quit JButton
+    */
+   JButton quit;
+   
+   /**
+    * The font for question and response text
+    */
    private static final Font FONT = new Font("arial", Font.PLAIN, 15);
    
+   /**
+    * Initializes program and loads the XML file based on command line arguments, or loads the file
+    * based on the GUI.
+    * 
+    * @param args The filename of the question fole
+    */
    public static void main(String[] args) {
       // select file
       
@@ -87,6 +164,11 @@ public class Movie101GUI extends JFrame implements ActionListener {
       Movie101GUI gui = new Movie101GUI(fileName);
    }
    
+   /**
+    * THe main GUI file. Handles the creation of all app components.
+    * 
+    * @param file The XML file containing the questions
+    */
    public Movie101GUI(String file) {
       // instantiate fields
       try {
@@ -186,6 +268,9 @@ public class Movie101GUI extends JFrame implements ActionListener {
       
    }
    
+   /**
+    * Opens a quit message dialog box with information about how the user did.
+    */
    private void quitMessage() {
       frame.setVisible(false);
       JOptionPane.showMessageDialog(null,
@@ -194,6 +279,9 @@ public class Movie101GUI extends JFrame implements ActionListener {
                                                   quiz.getNumAttemptedQuestions()));
    }
    
+   /**
+    * Handles all event processing for the app's buttons
+    */
    @Override
    public void actionPerformed(ActionEvent ae) {
       try {
@@ -307,6 +395,9 @@ public class Movie101GUI extends JFrame implements ActionListener {
       }
    }
    
+   /**
+    * Updates labels and radio buttons
+    */
    private void refresh() {
       try {
          // set the question label
@@ -325,9 +416,11 @@ public class Movie101GUI extends JFrame implements ActionListener {
       }
    }
    
+   /**
+    * Sets the response label to have the appropriate response text
+    */
    private void printResult() {
       try {
-         System.out.println(responseString);
          responseLabel.setText(responseString);
       } catch (Exception e) {
          e.printStackTrace();
