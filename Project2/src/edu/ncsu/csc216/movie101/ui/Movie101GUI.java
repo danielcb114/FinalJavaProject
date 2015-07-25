@@ -299,7 +299,6 @@ public class Movie101GUI extends JFrame implements ActionListener {
                // enable and deselect all radio buttons
                for (JRadioButton jRadioButton : answerButtons) {
                   jRadioButton.setEnabled(true);
-                  System.out.println(jRadioButton.isSelected());
                }
                
                // disable next question button
@@ -353,8 +352,6 @@ public class Movie101GUI extends JFrame implements ActionListener {
                }
                
                if (quiz.hasMoreQuestions()) {
-                  System.out.println(preSubmission);
-                  System.out.println(quiz.getCurrentQuestionText());
                   secondTry = preSubmission.equals(quiz.getCurrentQuestionText());
                } else {
                   secondTry = false;
@@ -362,7 +359,6 @@ public class Movie101GUI extends JFrame implements ActionListener {
                
                // end determination of radio button, and end of nested switch
                if (secondTry) {
-                  System.out.println("correct loop");
                   answerButtonGroup.getSelection().setEnabled(false);
                   answerButtonGroup.clearSelection();
                   submitAnswer.setEnabled(false);
