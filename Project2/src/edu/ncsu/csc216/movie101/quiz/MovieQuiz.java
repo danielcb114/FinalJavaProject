@@ -91,7 +91,7 @@ public class MovieQuiz implements QuizMaster {
 	 */
 	@Override
 	public int getNumAttemptedQuestions() {
-		return questions.getNumAttemptQuestions();
+		return questions.getNumAttemptedQuestions();
 	}
 
 }
