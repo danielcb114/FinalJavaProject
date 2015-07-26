@@ -9,12 +9,20 @@ import org.junit.Test;
 import edu.ncsu.csc216.question_library.QuestionException;
 
 /**
+ * Responsible for testing all methods of the MovieQUiz class
+ * 
  * @author dcbrewer
  */
 public class MovieQuizTest {
    
+   /**
+    * The test file to load questions from
+    */
    public static String testFile = "test.xml";
    
+   /**
+    * Tests the constructor to ensure that it throws the proper exceptions
+    */
    @Test(expected = QuestionException.class)
    public void testMovieQuizThrowException() throws Exception {
       MovieQuiz quiz = new MovieQuiz("this.txt"); // invalid file type, should be .xml
@@ -23,6 +31,9 @@ public class MovieQuizTest {
       MovieQuiz quiz4 = new MovieQuiz(""); // empty string
    }
    
+   /**
+    * Tests the constructor to ensure that it can create obejcts from valid file names
+    */
    @Test(expected = QuestionException.class)
    public void testMovieQuiz() throws Exception {
       MovieQuiz quiz = new MovieQuiz("this.xml"); // valid file
@@ -33,6 +44,9 @@ public class MovieQuizTest {
                                                       // of numbers
    }
    
+   /**
+    * tests the hasMoreQuestions method
+    */
    @Test
    public void testHasMoreQuestions() throws Exception {
       int expectedQuestions = 3;
@@ -54,6 +68,9 @@ public class MovieQuizTest {
       assertFalse(quiz.hasMoreQuestions());
    }
    
+   /**
+    * Tests the getCurrentQuestionText method
+    */
    @Test
    public void testGetCurrentQuestionText() throws Exception {
       MovieQuiz quiz = new MovieQuiz(testFile);
@@ -63,6 +80,9 @@ public class MovieQuizTest {
                                                                                  // question
    }
    
+   /**
+    * Tests the getCurrgentQuestionChoices method
+    */
    @Test
    public void testGetCurrentQuestionChoices() throws Exception {
       MovieQuiz quiz = new MovieQuiz(testFile);
@@ -74,6 +94,9 @@ public class MovieQuizTest {
       }
    }
    
+   /**
+    * Tests the processAnswer method
+    */
    @Test
    public void testProcessAnswer() throws Exception {
       MovieQuiz quiz = new MovieQuiz(testFile);
@@ -118,6 +141,9 @@ public class MovieQuizTest {
       assertEquals("Incorrect!", quiz2.processAnswer("d"));
    }
    
+   /**
+    * Tests the getNumCorrectQuestions method
+    */
    @Test
    public void testGetNumCorrectQuestions() throws Exception {
       MovieQuiz quiz = new MovieQuiz(testFile);
@@ -130,6 +156,9 @@ public class MovieQuizTest {
       assertEquals(quiz.getNumCorrectQuestions(), 3);
    }
    
+   /**
+    * Tests the getNumAttemptedQuestions method
+    */
    @Test
    public void testGetNumAttemptedQuestions() throws Exception {
       MovieQuiz quiz = new MovieQuiz(testFile);

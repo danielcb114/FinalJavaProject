@@ -19,14 +19,29 @@ import edu.ncsu.csc216.question_library.StandardQuestion;
  */
 public class MovieQuestionsTest {
    
+   /**
+    * MovieQuestions field used for testing
+    */
    MovieQuestions movieQuestions;
    
+   /**
+    * Elementary question list used for testing
+    */
    List<ElementaryQuestion> listElem;
    
+   /**
+    * Standard question list used for testing
+    */
    List<StandardQuestion> listStd;
    
+   /**
+    * Advanced question list used for testing
+    */
    List<AdvancedQuestion> listAdv;
    
+   /**
+    * Setup method; fills the MovieQuestions field with question objects
+    */
    @Before
    public void setUp() {
       
@@ -55,6 +70,9 @@ public class MovieQuestionsTest {
       movieQuestions = new MovieQuestions(listStd, listElem, listAdv);
    }
    
+   /**
+    * Tests the movieQuestions method
+    */
    @Test
    public void testMovieQuestions() throws Exception {
       
@@ -67,6 +85,9 @@ public class MovieQuestionsTest {
       assertTrue(movieQuestionsTest instanceof MovieQuestions);
    }
    
+   /**
+    * Tests the hasMoreQuestions method
+    */
    @Test
    public void testHasMoreQuestions() throws Exception {
       // should be true
@@ -90,6 +111,9 @@ public class MovieQuestionsTest {
       assertFalse(movieQuestions.hasMoreQuestions());
    }
    
+   /**
+    * Tests the getCurrentQuestionText method
+    */
    @Test
    public void testGetCurrentQuestionText() throws Exception {
       
@@ -130,6 +154,9 @@ public class MovieQuestionsTest {
       
    }
    
+   /**
+    * Tests the getCurrentQuestionChoices method
+    */
    @Test
    public void testGetCurrentQuestionChoices() throws Exception {
       String[] choices = { "A", "B", "C", "D" };
@@ -168,6 +195,9 @@ public class MovieQuestionsTest {
       movieQuestions.processAnswer("b"); // right answer to 3rd hard
    }
    
+   /**
+    * @throws Tests the processAnswer method
+    */
    @Test
    public void testProcessAnswer() throws Exception {
       
@@ -203,6 +233,9 @@ public class MovieQuestionsTest {
       assertTrue(equalAnswers(lowerAnswer, upperAnswer));
    }
    
+   /**
+    * Tests the getNumCorrectAnswers exception
+    */
    @Test
    public void testGetNumCorrectAnswers() throws Exception {
       movieQuestions.processAnswer("a");// wrong answer to standard
@@ -229,8 +262,11 @@ public class MovieQuestionsTest {
       assertEquals(8, movieQuestions.getNumCorrectAnswers());
    }
    
+   /**
+    * @throws Tests the getNumAttemptedQuestions method
+    */
    @Test
-   public void testGetNumAttemptQuestions() throws Exception {
+   public void testGetNumAttemptedQuestions() throws Exception {
       movieQuestions.processAnswer("a");// wrong answer to standard
       
       movieQuestions.processAnswer("a");// wrong answer to 1st easy, 1st attempt
@@ -251,7 +287,7 @@ public class MovieQuestionsTest {
       
       movieQuestions.processAnswer("b"); // right answer to 3rd hard
       
-      assertEquals(10, movieQuestions.getNumAttemptQuestions());
+      assertEquals(10, movieQuestions.getNumAttemptedQuestions());
    }
    
    private ElementaryQuestion makeEasyQuestion(String question, String choiceA, String choiceB,
