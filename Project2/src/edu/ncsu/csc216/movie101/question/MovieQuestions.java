@@ -126,7 +126,7 @@ public class MovieQuestions {
     * 
     * @return the number of user attempts
     */
-   public int getNumAttemptQuestions() {
+   public int getNumAttemptedQuestions() {
       return numAttemptQuests;
    }
    
