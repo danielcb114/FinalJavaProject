@@ -362,7 +362,6 @@ public class Movie101GUI extends JFrame implements ActionListener {
                // end determination of radio button, and end of nested switch
                if (secondTry) {
                   answerButtonGroup.getSelection().setEnabled(false);
-                  answerButtonGroup.clearSelection();
                   submitAnswer.setEnabled(false);
                } else {
                   if (quiz.hasMoreQuestions()) {
