@@ -6,6 +6,10 @@ ID 2  :200002814
 How to run the software:
 Open and the Movie101GUI file in the UI package. Then, load the test file "tests.xml" through a command line argument, or via the popup file chooser. Afterwards, you will be able to take the quiz by selecting your answer, and submitting it, then reviewing the solution and clicking "next question" to move on. You may click the quit button at any time to stop taking the quiz. 
 
+BLACKBOX TEST:
+Right click "BBTP_dcbrewer_khwells", and open the file with your favorite web browser. This was done because the document contains tables which were too wide for a word document. 
+
+
 AllTests--------------------------------------------------------------------------
 ==================================================================================
 Simple class to run all of the project's test classes.
