@@ -9,6 +9,9 @@ Open and the Movie101GUI file in the UI package. Then, load the test file "tests
 BLACKBOX TEST:
 Right click "BBTP_dcbrewer_khwells", and open the file with your favorite web browser. This was done because the document contains tables which were too wide for a word document. 
 
+UML Changes:
+Changed each of the sub-QuestionStates to accept List<Questions> instead of accepting their individual subtype questions lists. Created three private data members of type List<Question> and then filled them with questions from each of the parameter lists in the constructor of MovieQuestions (Example: List<Question> elemQuestions would be adding questions from the parameter List<ElementaryQuestion> elemList). In order to get the hints from the questions in elemQuestions, the question was casted back to a ElementaryQuestion which is legal as it was originally a ElementaryQuestions from the parameter List<ElementaryQuestion> elemList.
+
 
 AllTests--------------------------------------------------------------------------
 ==================================================================================
